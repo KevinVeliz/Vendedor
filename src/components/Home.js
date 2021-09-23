@@ -54,7 +54,6 @@ export const Home = () => {
         <div>
             
             <Navbar user={user}/>
-            
             {products.length > 0 &&(
                 <div>
                     <h1>Products</h1>

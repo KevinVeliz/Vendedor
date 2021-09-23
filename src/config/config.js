@@ -4,12 +4,12 @@ import 'firebase/firestore'
 import 'firebase/storage'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBQ8XA6rtMAzRpyVkjDav-o4j-uXTZuUmU",
-    authDomain: "nueva-prueba-b744a.firebaseapp.com",
-    projectId: "nueva-prueba-b744a",
-    storageBucket: "nueva-prueba-b744a.appspot.com",
-    messagingSenderId: "894394668589",
-    appId: "1:894394668589:web:c85cae2ce64cc470d78aa4"
+  apiKey: "AIzaSyBoNGC4-DIn430Zjg2m9HVJarpnrgiqxik",
+  authDomain: "di2021-a.firebaseapp.com",
+  projectId: "di2021-a",
+  storageBucket: "di2021-a.appspot.com",
+  messagingSenderId: "18720027199",
+  appId: "1:18720027199:web:e75fde29e3f7862b6bfe8a"
   };
 
 firebase.initializeApp(firebaseConfig);

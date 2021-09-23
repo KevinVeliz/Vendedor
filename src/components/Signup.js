@@ -197,7 +197,8 @@ export const Signup = () => {
             <Form.Item {...tailFormItemLayout}>
                 <Button type="primary" htmlType="submit" onClick={handleSignUp} >
                     Registrarse
-                </Button> o Si ya tienes cuenta, ingresa <Link to ="/login"> Aquí</Link>
+                </Button> 
+                o Si ya tienes cuenta, ingresa <Link to ="/login"> Aquí</Link>
 
             </Form.Item>
 

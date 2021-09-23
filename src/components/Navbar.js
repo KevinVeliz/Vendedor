@@ -2,10 +2,10 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import { useHistory } from 'react-router';
 import { auth } from '../config/config';
-import { Button } from 'antd';
+import { Button, Menu } from 'antd';
 import { vendedor } from './vendedor';
-import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
+import '../App.css';
 
 export const Navbar = ({user}) => {
 
@@ -19,18 +19,23 @@ export const Navbar = ({user}) => {
     }
 
     return(
-        <div>
-            <Row>
-                <Col>
-                {user && <>
-                <Link to="/vendedor"> {user} </Link> 
-                <Button onClick={handleLogout}> LOGOUT </Button>
-                <Button><Link to="/add-products"> AGREGAR PRODUCTOS  </Link> </Button>
-                
-            </>}
-            </Col>
-            </Row>
-            
-        </div>
+
+        <Menu  style={{ background: "rgb(255,174,134)"}} mode="horizontal" className="menudesing">
+            <Menu.Item unselectable >
+            <Link to="/vendedor"> {user} </Link> 
+            </Menu.Item>
+
+            <Menu.Item >   
+                <Link to="/Selector">
+                <Button  style={{backgroundColor:"#bbffbb"}}  ><Link to="/add-products"> AGREGAR PRODUCTOS  </Link> </Button>
+                </Link>
+            </Menu.Item>
+
+            <Menu.Item >   
+                <Button  style={{backgroundColor:"#bbffbb"}} onClick={handleLogout} > LOGOUT </Button>
+            </Menu.Item> 
+        </Menu>
+        
+        
     )
 }

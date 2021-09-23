@@ -17,9 +17,7 @@ function App() {
             <Route  path= "/login" component ={Login}/>
             <Route  path= "/vendedor" component={vendedor}/>
             <Route  path= "/add-products" component={AddProducts}/>
-
         </Switch>
-      <Navbar/>
     </BrowserRouter>
   );
 }

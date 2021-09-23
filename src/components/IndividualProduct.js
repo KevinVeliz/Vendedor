@@ -1,13 +1,16 @@
 import React from "react";
-import { Card } from 'antd';
+import { Card,Row,Col } from 'antd';
 import 'antd/dist/antd.css';
 const { Meta } = Card;
+
 
 export const IndividualProduct = ({individualProduct}) =>{
     //console.log(individualProduct);
 
     return(
         <div>
+            <Row gutter={[32,32]}>
+                <Col xs={24} sm={12} md={8} lg={4}> 
             <Card
             hoverable
             style={{ width: 240 }}
@@ -17,8 +20,9 @@ export const IndividualProduct = ({individualProduct}) =>{
             />
             <Meta title={individualProduct.price} description={individualProduct.tipo}
             />
-                </Card>,
-           
+                </Card>
+                </Col>
+           </Row>
         </div>
     )
 }
