@@ -1,6 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { useState } from 'react';
+import { auth, fs } from '../config/config';
+import { useHistory } from 'react-router';
+
 import {
     Button,
     Form,
@@ -14,18 +17,40 @@ import Checkbox from "antd/es/checkbox/Checkbox";
 
 export const Signup = () => {
 
-    //guardar los datos del formulario
+    //uso de history para regresar a la pagina
+    const history = useHistory();
 
+    //guardar los datos del formulario
     const [name,setName]= useState('');
     const [email,setEmail]= useState('');
     const [password,setPassword]= useState('');
+    const [phone,setPhone] = useState('');
 
     //evento para verifiacar el almacenamiento de datos
+    //createUser es una tarea asincronica
     const handleSignUp = (e)=>{
         e.preventDefault();
-        console.log(name,email,password)
-    }
+        //console.log(name,email,password)
+        auth.createUserWithEmailAndPassword(email,password)
+        .then((credentials)=>{
+            console.log(credentials);
+            fs.collection('users').doc(credentials.user.uid).set({
+                Name: name,
+                Email: email,
+                Password: password,
+                Phone: phone
+            }).then(()=>{
+                setName('');
+                setEmail('');
+                setPassword('');
+                history.push('/login');
+            }).catch();
+        })
+        .catch(()=>{
 
+        })
+
+    }
 
     const { Option } = Select;
 
@@ -77,7 +102,7 @@ export const Signup = () => {
             onFinish={onFinish}
             initialValues={{
                 residence: ['zhejiang', 'hangzhou', 'xihu'],
-                prefix: '86',
+                prefix: '593',
             }}
             scrollToFirstError
         >
@@ -149,7 +174,8 @@ export const Signup = () => {
                 label="Phone Number"
                 rules={[{ required: true, message: 'Por favor ingrese su número de teléfono' }]}
             >
-                <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+                <Input addonBefore={prefixSelector} style={{ width: '100%' }} 
+                onChange={(e)=>setPhone(e.target.value)} value={phone}/>
             </Form.Item>
 
             <Form.Item
@@ -169,7 +195,7 @@ export const Signup = () => {
             </Form.Item>
 
             <Form.Item {...tailFormItemLayout}>
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" htmlType="submit" onClick={handleSignUp} >
                     Registrarse
                 </Button> o Si ya tienes cuenta, ingresa <Link to ="/login"> Aquí</Link>
 

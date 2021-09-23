@@ -2,14 +2,28 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { auth } from '../config/config';
+import 'antd/dist/antd.css';
+import { useHistory } from 'react-router';
 
 export const Login = () => {
     const [email,setEmail]= useState('');
     const [password,setPassword]= useState('');
 
+    //uso de history para regresar a la pagina
+    const history = useHistory();
+
     const handleLogIn = (e)=>{
         e.preventDefault();
-        console.log(email,password)
+        //console.log(name,email,password)
+        auth.signInWithEmailAndPassword(email,password)
+        .then(()=>{
+                setEmail('');
+                setPassword('');
+                history.push('/home');
+            
+        }).catch(()=>{})
+
     }
 
 
@@ -62,7 +76,7 @@ export const Login = () => {
             </Form.Item>
 
             <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button">
+                <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleLogIn} >
                     Iniciar sesión
                 </Button>
                 Or <Link to ="/signup"> Registrate ahora</Link>
